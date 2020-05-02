@@ -1,6 +1,23 @@
 import React from 'react';
 import { Store } from './store';
 
+interface Episode {
+  airdate: string;
+  airstamp: string;
+  airtime: string;
+  id: number;
+  image: {
+    medium: string;
+    original: string;
+  };
+  name: string;
+  number: number;
+  runtime: number;
+  season: number;
+  summary: string;
+  url: string;
+}
+
 export default function App(): JSX.Element {
   const { state, dispatch } = React.useContext(Store);
 
@@ -24,8 +41,27 @@ export default function App(): JSX.Element {
 
   return (
     <>
-      <h1>Rick and Morty</h1>
-      <p>Pick your favorite episode</p>
+      <header className="header">
+        <h1>Rick and Morty</h1>
+        <p>Pick your favorite episode</p>
+      </header>
+      <ul className="episode-layout">
+        {state.episodes.map((episode: Episode) => (
+          <li key={episode.id} className="episode-box">
+            {episode.image && <img src={episode.image.medium} alt={`Rick and Morty ${episode.name}`} />}
+            <p>{episode.name}</p>
+            <p>
+              Season:
+              {' '}
+              {episode.season}
+              {' '}
+              Number:
+              {' '}
+              {episode.number}
+            </p>
+          </li>
+        ))}
+      </ul>
     </>
   );
 }
