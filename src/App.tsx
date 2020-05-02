@@ -1,6 +1,6 @@
 import React from 'react';
 import { Store } from './store';
-import { Episode, Action } from './interfaces';
+import { Episode, Action, EpisodeProps } from './interfaces';
 
 const EpisodesList = React.lazy<any>(() => import('./EpisodesList'));
 
@@ -33,6 +33,12 @@ export default function App(): JSX.Element {
     }
   });
 
+  const episodeProps: EpisodeProps = {
+    episodes: state.episodes,
+    toggleFavoriteAction,
+    favorites: state.favorites,
+  };
+
   return (
     <>
       <header className="header">
@@ -48,9 +54,9 @@ export default function App(): JSX.Element {
       </header>
       <React.Suspense fallback={<div>Loading...</div>}>
         <EpisodesList
-          episodes={state.episodes}
-          toggleFavoriteAction={toggleFavoriteAction}
-          favorites={state.favorites}
+          episodes={episodeProps.episodes}
+          toggleFavoriteAction={episodeProps.toggleFavoriteAction}
+          favorites={episodeProps.favorites}
         />
       </React.Suspense>
     </>

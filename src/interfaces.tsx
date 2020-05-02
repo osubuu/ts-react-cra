@@ -24,3 +24,9 @@ export interface Episode {
   summary: string;
   url: string;
 }
+
+export interface EpisodeProps {
+  episodes: Episode[];
+  toggleFavoriteAction: (episode: Episode) => Action;
+  favorites: Episode[];
+}
