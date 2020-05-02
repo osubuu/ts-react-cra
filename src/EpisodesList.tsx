@@ -2,7 +2,11 @@ import React from 'react';
 import { Episode, Action } from './interfaces';
 
 export default function EpisodesList(props: any): JSX.Element {
-  const { episodes, toggleFavoriteAction, favorites } = props;
+  const {
+    episodes, toggleFavoriteAction, favorites,
+    store,
+  } = props;
+  const { state, dispatch } = store;
   return (
     <ul className="episode-layout">
       {episodes.map((episode: Episode) => {
@@ -20,7 +24,7 @@ export default function EpisodesList(props: any): JSX.Element {
               {' '}
               {episode.number}
             </p>
-            <button type="button" onClick={(): Action => toggleFavoriteAction(episode)}>
+            <button type="button" onClick={(): Action => toggleFavoriteAction(state, episode, dispatch)}>
               {episodeIsFavorited ? 'Remove from ' : 'Add to '}
               {' '}
               favorites

@@ -27,6 +27,10 @@ export interface Episode {
 
 export interface EpisodeProps {
   episodes: Episode[];
-  toggleFavoriteAction: (episode: Episode) => Action;
+  store: {
+    state: State;
+    dispatch: any;
+  };
+  toggleFavoriteAction: (state: State, episode: Episode, dispatch: any) => Action;
   favorites: Episode[];
 }
