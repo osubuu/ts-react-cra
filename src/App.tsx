@@ -1,22 +1,6 @@
 import React from 'react';
-import { Store, Action } from './store';
-
-interface Episode {
-  airdate: string;
-  airstamp: string;
-  airtime: string;
-  id: number;
-  image: {
-    medium: string;
-    original: string;
-  };
-  name: string;
-  number: number;
-  runtime: number;
-  season: number;
-  summary: string;
-  url: string;
-}
+import { Store } from './store';
+import { Episode, Action } from './interfaces';
 
 export default function App(): JSX.Element {
   const { state, dispatch } = React.useContext(Store);
