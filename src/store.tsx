@@ -17,6 +17,8 @@ function reducer(state: State, action: Action): State {
       return { ...state, episodes: payload };
     case 'ADD_FAVORITE':
       return { ...state, favorites: [...state.favorites, payload] };
+    case 'REMOVE_FAVORITE':
+      return { ...state, favorites: state.favorites.filter((favorite) => favorite !== payload) };
     default:
       return state;
   }

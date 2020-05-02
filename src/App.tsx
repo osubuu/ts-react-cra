@@ -15,10 +15,13 @@ export default function App(): JSX.Element {
     });
   };
 
-  const toggleFavoriteAction = (episode: Episode): Action => dispatch({
-    type: 'ADD_FAVORITE',
-    payload: episode,
-  });
+  const toggleFavoriteAction = (episode: Episode): Action => {
+    const episodeIsFavorited = state.favorites.includes(episode);
+    return dispatch({
+      type: episodeIsFavorited ? 'REMOVE_FAVORITE' : 'ADD_FAVORITE',
+      payload: episode,
+    });
+  };
 
   // useEffect is similar to componentDidMount, DidUpdate and DillUnmount all together
   // it runs after render
@@ -35,22 +38,29 @@ export default function App(): JSX.Element {
         <p>Pick your favorite episode</p>
       </header>
       <ul className="episode-layout">
-        {state.episodes.map((episode: Episode) => (
-          <li key={episode.id} className="episode-box">
-            {episode.image && <img src={episode.image.medium} alt={`Rick and Morty ${episode.name}`} />}
-            <p>{episode.name}</p>
-            <p>
-              Season:
-              {' '}
-              {episode.season}
-              {' '}
-              Number:
-              {' '}
-              {episode.number}
-            </p>
-            <button type="button" onClick={(): Action => toggleFavoriteAction(episode)}>Favorite</button>
-          </li>
-        ))}
+        {state.episodes.map((episode: Episode) => {
+          const episodeIsFavorited = state.favorites.includes(episode);
+          return (
+            <li key={episode.id} className="episode-box">
+              {episode.image && <img src={episode.image.medium} alt={`Rick and Morty ${episode.name}`} />}
+              <p>{episode.name}</p>
+              <p>
+                Season:
+                {' '}
+                {episode.season}
+                {' '}
+                Number:
+                {' '}
+                {episode.number}
+              </p>
+              <button type="button" onClick={(): Action => toggleFavoriteAction(episode)}>
+                {episodeIsFavorited ? 'Remove from ' : 'Add to '}
+                {' '}
+                favorites
+              </button>
+            </li>
+          );
+        })}
       </ul>
     </>
   );
