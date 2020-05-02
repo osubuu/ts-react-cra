@@ -37,7 +37,6 @@ module.exports = {
         tsx: 'never',
       },
     ],
-    'react/destructuring-assignment': 0,
   },
   settings: {
     'import/resolver': {
