@@ -15,6 +15,8 @@ const initialState: State = {
   favorites: [],
 };
 
+// Context uses a Provider to pass down data to any Consumers,
+// no matter how nested they are in the component tree
 export const Store = React.createContext<State | any>(initialState);
 
 function reducer(state: State, action: Action): State {
