@@ -8,21 +8,25 @@ export default function App({ children }: any): JSX.Element {
   return (
     <>
       <header className="header">
-        <div>
-          <h1>Rick and Morty</h1>
-          <p>Pick your favorite episode</p>
-        </div>
-        <div>
-          <Link to="/">Home</Link>
-          <Link to="/favorites">
-            {' '}
-            Favorite(s):
-            {' '}
-            {state.favorites.length}
-          </Link>
+        <div className="header-content wrapper">
+          <div>
+            <h1>Rick and Morty</h1>
+            <p>Pick your favorite episode!</p>
+          </div>
+          <nav>
+            <Link className="nav-link" to="/">Home</Link>
+            <Link className="nav-link" to="/favorites">
+              {' '}
+              Favorite(s):
+              {' '}
+              {state.favorites.length}
+            </Link>
+          </nav>
         </div>
       </header>
-      {children}
+      <main className="wrapper">
+        {children}
+      </main>
     </>
   );
 }

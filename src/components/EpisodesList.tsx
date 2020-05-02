@@ -21,7 +21,7 @@ export default function EpisodesList(props: any): JSX.Element {
               {' '}
               {episode.season}
               {' '}
-              Number:
+              Episode:
               {' '}
               {episode.number}
             </p>
