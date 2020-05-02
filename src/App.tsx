@@ -1,5 +1,5 @@
 import React from 'react';
-import { Store } from './store';
+import { Store, Action } from './store';
 
 interface Episode {
   airdate: string;
@@ -31,6 +31,11 @@ export default function App(): JSX.Element {
     });
   };
 
+  const toggleFavoriteAction = (episode: Episode): Action => dispatch({
+    type: 'ADD_FAVORITE',
+    payload: episode,
+  });
+
   // useEffect is similar to componentDidMount, DidUpdate and DillUnmount all together
   // it runs after render
   React.useEffect(() => {
@@ -59,6 +64,7 @@ export default function App(): JSX.Element {
               {' '}
               {episode.number}
             </p>
+            <button type="button" onClick={(): Action => toggleFavoriteAction(episode)}>Favorite</button>
           </li>
         ))}
       </ul>
