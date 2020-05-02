@@ -1,4 +1,4 @@
-import { Episode, Action, State } from './interfaces';
+import { Episode, Action, State } from '../interfaces/interfaces';
 
 export const fetchDataAction = async (dispatch: any): Promise<Action> => {
   const url = 'https://api.tvmaze.com/singlesearch/shows?q=rick-&-morty&embed=episodes';

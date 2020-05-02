@@ -1,11 +1,12 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import { Router, RouteComponentProps } from '@reach/router';
-import './index.css';
-import App from './App';
-import { StoreProvider } from './store';
-import Home from './Home';
-import Favorites from './Favorites';
+import App from './components/App';
+import { StoreProvider } from './store/store';
+import Home from './pages/Home';
+import Favorites from './pages/Favorites';
+import './styles/index.css';
+import './styles/App.css';
 
 const RouterPage = (
   props: {pageComponent: JSX.Element} & RouteComponentProps,

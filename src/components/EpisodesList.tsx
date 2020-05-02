@@ -1,5 +1,5 @@
 import React from 'react';
-import { Episode, Action } from './interfaces';
+import { Episode, Action } from '../interfaces/interfaces';
 
 export default function EpisodesList(props: any): JSX.Element {
   const {

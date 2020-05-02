@@ -1,7 +1,7 @@
 import React from 'react';
-import { Store } from './store';
-import { toggleFavoriteAction } from './actions';
-import EpisodesList from './EpisodesList';
+import { Store } from '../store/store';
+import { toggleFavoriteAction } from '../store/actions';
+import EpisodesList from '../components/EpisodesList';
 
 export default function Favorites(): JSX.Element {
   const { state, dispatch } = React.useContext(Store);

@@ -1,6 +1,6 @@
 import React from 'react';
 import { Link } from '@reach/router';
-import { Store } from './store';
+import { Store } from '../store/store';
 
 export default function App({ children }: any): JSX.Element {
   const { state } = React.useContext(Store);
