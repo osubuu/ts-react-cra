@@ -11,9 +11,10 @@ export default function EpisodesList(props: any): JSX.Element {
     <ul className="episode-layout">
       {episodes.map((episode: Episode) => {
         const episodeIsFavorited = favorites.includes(episode);
-        return (
+        const hasImage = episode.image;
+        return hasImage ? (
           <li key={episode.id} className="episode-box">
-            {episode.image && <img src={episode.image.medium} alt={`Rick and Morty ${episode.name}`} />}
+            <img src={episode.image.medium} alt={`Rick and Morty ${episode.name}`} />
             <p>{episode.name}</p>
             <p>
               Season:
@@ -30,7 +31,7 @@ export default function EpisodesList(props: any): JSX.Element {
               favorites
             </button>
           </li>
-        );
+        ) : null;
       })}
     </ul>
   );
