@@ -26,7 +26,7 @@ module.exports = {
   ],
   rules: {
     'react/jsx-filename-extension': [1, { 'extensions': ['.js', '.jsx', '.ts', '.tsx'] }],
-    "quotes": [2, "single", "avoid-escape"],
+    'quotes': [2, 'single', 'avoid-escape'],
     'import/extensions': [
       'error',
       'ignorePackages',
@@ -37,6 +37,7 @@ module.exports = {
         tsx: 'never',
       },
     ],
+    'react/destructuring-assignment': 0,
   },
   settings: {
     'import/resolver': {
