@@ -1,30 +1,31 @@
 import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import { Store } from './store';
 
-function App(): JSX.Element {
+export default function App(): JSX.Element {
+  const { state, dispatch } = React.useContext(Store);
+
+  const fetchDataAction = async () => {
+    const url = 'https://api.tvmaze.com/singlesearch/shows?q=rick-&-morty&embed=episodes';
+    const data = await fetch(url);
+    const { _embedded } = await data.json();
+    return dispatch({
+      type: 'FETCH_DATA',
+      payload: _embedded.episodes,
+    });
+  };
+
+  // useEffect is similar to componentDidMount, DidUpdate and DillUnmount all together
+  // it runs after render
+  React.useEffect(() => {
+    if (state.episodes.length === 0) {
+      fetchDataAction();
+    }
+  });
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit
-          {' '}
-          <code>src/App.tsx</code>
-          {' '}
-          and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <>
+      <h1>Rick and Morty</h1>
+      <p>Pick your favorite episode</p>
+    </>
   );
 }
-
-export default App;
