@@ -5,7 +5,7 @@ export interface State {
 
 export interface Action {
   type: string;
-  payload: any;
+  payload: Episode[] | any;
 }
 
 export interface Episode {
@@ -25,12 +25,14 @@ export interface Episode {
   url: string;
 }
 
+export type Dispatch = React.Dispatch<Action>;
+
 export interface EpisodeProps {
   episodes: Episode[];
   store: {
     state: State;
-    dispatch: any;
+    dispatch: Dispatch;
   };
-  toggleFavoriteAction: (state: State, episode: Episode, dispatch: any) => Action;
+  toggleFavoriteAction: (state: State, episode: Episode, dispatch: Dispatch) => Action;
   favorites: Episode[];
 }

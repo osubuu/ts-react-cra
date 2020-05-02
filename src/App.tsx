@@ -2,7 +2,7 @@ import React from 'react';
 import { Link } from '@reach/router';
 import { Store } from './store';
 
-export default function App(props: any): JSX.Element {
+export default function App({ children }: any): JSX.Element {
   const { state } = React.useContext(Store);
 
   return (
@@ -22,7 +22,7 @@ export default function App(props: any): JSX.Element {
           </Link>
         </div>
       </header>
-      {props.children}
+      {children}
     </>
   );
 }

@@ -10,7 +10,7 @@ import * as serviceWorker from './serviceWorker';
 
 const RouterPage = (
   props: {pageComponent: JSX.Element} & RouteComponentProps,
-) => props.pageComponent;
+): JSX.Element => props.pageComponent;
 
 ReactDOM.render(
   <React.StrictMode>
