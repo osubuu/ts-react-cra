@@ -2,6 +2,8 @@ import React from 'react';
 import { Store } from './store';
 import { Episode, Action } from './interfaces';
 
+const EpisodesList = React.lazy<any>(() => import('./EpisodesList'));
+
 export default function App(): JSX.Element {
   const { state, dispatch } = React.useContext(Store);
 
@@ -44,31 +46,13 @@ export default function App(): JSX.Element {
           {state.favorites.length}
         </p>
       </header>
-      <ul className="episode-layout">
-        {state.episodes.map((episode: Episode) => {
-          const episodeIsFavorited = state.favorites.includes(episode);
-          return (
-            <li key={episode.id} className="episode-box">
-              {episode.image && <img src={episode.image.medium} alt={`Rick and Morty ${episode.name}`} />}
-              <p>{episode.name}</p>
-              <p>
-                Season:
-                {' '}
-                {episode.season}
-                {' '}
-                Number:
-                {' '}
-                {episode.number}
-              </p>
-              <button type="button" onClick={(): Action => toggleFavoriteAction(episode)}>
-                {episodeIsFavorited ? 'Remove from ' : 'Add to '}
-                {' '}
-                favorites
-              </button>
-            </li>
-          );
-        })}
-      </ul>
+      <React.Suspense fallback={<div>Loading...</div>}>
+        <EpisodesList
+          episodes={state.episodes}
+          toggleFavoriteAction={toggleFavoriteAction}
+          favorites={state.favorites}
+        />
+      </React.Suspense>
     </>
   );
 }
