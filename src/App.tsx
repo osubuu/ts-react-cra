@@ -5,7 +5,7 @@ import { Episode, Action } from './interfaces';
 export default function App(): JSX.Element {
   const { state, dispatch } = React.useContext(Store);
 
-  const fetchDataAction = async () => {
+  const fetchDataAction = async (): Promise<Action> => {
     const url = 'https://api.tvmaze.com/singlesearch/shows?q=rick-&-morty&embed=episodes';
     const data = await fetch(url);
     const { _embedded } = await data.json();
@@ -34,8 +34,15 @@ export default function App(): JSX.Element {
   return (
     <>
       <header className="header">
-        <h1>Rick and Morty</h1>
-        <p>Pick your favorite episode</p>
+        <div>
+          <h1>Rick and Morty</h1>
+          <p>Pick your favorite episode</p>
+        </div>
+        <p>
+          Favorite(s):
+          {' '}
+          {state.favorites.length}
+        </p>
       </header>
       <ul className="episode-layout">
         {state.episodes.map((episode: Episode) => {
